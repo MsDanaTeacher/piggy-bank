@@ -1,4 +1,7 @@
 import {useState, useEffect} from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import LandingPage from './components/LandingPage';
+
 import './App.css';
 
 function App() {
@@ -13,6 +16,11 @@ function App() {
   return (
     <div className="App">
       <h1>hello</h1>
+      <BrowserRouter>
+      <Switch>
+            <Route path="/landingpage"><LandingPage /></Route>
+      </Switch>
+      </BrowserRouter>
     </div>
   );
 }
