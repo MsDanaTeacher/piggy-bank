@@ -7,8 +7,8 @@ function App() {
   useEffect(() => {
     fetch("/users")
     .then((r) => r.json())
-    .then((data) => setMessage(data))
-    console.log(message)
+    .then((data) => console.log(data))
+    // console.log(message)
   }, []);
   return (
     <div className="App">
