@@ -1,38 +1,132 @@
-.App {
-  text-align: center;
+input[type=checkbox] {
+    display:none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input#thing1[type=checkbox] + label
+{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3940/3940407.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    display:inline-block;
+    padding: 0 0 0 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input#thing1:checked[type=checkbox] + label
+{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3940/3940407.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    border: 4px solid #FFCC02;
+    border-radius: 50%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+input#thing2[type=checkbox] + label
+{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3940/3940446.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    margin-left: 4px;
 }
 
-.App-link {
-  color: #61dafb;
+input#thing2:checked[type=checkbox] + label
+{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3940/3940446.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    margin-left: 4px;
+    border: 4px solid #FFCC02;
+    border-radius: 50%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input#thing3[type=checkbox] + label
+{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3940/3940439.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    margin-left: 4px;
+}
+
+input#thing3:checked[type=checkbox] + label
+{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3940/3940439.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    margin-left: 4px;
+    border: 4px solid #FFCC02;
+    border-radius: 50%;
+}
+
+input#thing4[type=checkbox] + label
+{
+    background-image: url("https://cdn-icons-png.flaticon.com/128/3940/3940422.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    margin-left: 4px;
+}
+
+input#thing4:checked[type=checkbox] + label
+{
+    background-image: url("https://cdn-icons-png.flaticon.com/128/3940/3940422.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    margin-left: 4px;
+    border: 4px solid #FFCC02;
+    border-radius: 50%;
+}
+
+.signup-form-inputs{
+    border: none;
+    color: #FFCC02; 
+    font-family: "Roboto";
+    font-weight: 300;
+    outline: none;
+    border-bottom: 1px solid #FFCC02;
+}
+
+.signup-form-inputs::placeholder{
+    border: none;
+    color: #FFCC02; 
+    font-family: "Roboto";
+}
+
+.signup-form-banker-label {
+    color: #FFCC02; 
+    font-family: "Roboto";
+    font-weight: 300;
+}
+
+.signup-page-already-piggybanking {
+    color: #FFCC02; 
+    font-family: "Roboto";
+    font-weight: 500;
 }
