@@ -1,8 +1,11 @@
 import React from "react";
 import PigBackground from "../assets/piggyhome.jpg";
+import NavBar from "./NavBar.js";
 
 export default function LandingPage() {
   return (
+    <>
+    <NavBar />
     <div class="flex flex-row">
       <div class="absolute z-10 mx-10 my-10 h-screen">
         <h1
@@ -17,5 +20,6 @@ export default function LandingPage() {
         <img src={PigBackground} class="h-screen w-screen md:w-full md:h-full"/>
       </div>
     </div>
+    </>
   );
 }

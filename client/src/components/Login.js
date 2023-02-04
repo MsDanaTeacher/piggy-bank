@@ -1,8 +1,11 @@
 import React from 'react'
 import PigLogo from "../assets/piggy-bank-icon.png";
+import LoginSignupNavbar from './LoginSignupNavbar';
 
 export default function Login() {
   return (
+    <>
+    <LoginSignupNavbar />
     <div class="flex flex-row">
       <div class="mx-10 my-10 h-screen mx-auto">
         <img src={PigLogo} class="content-center w-6/12 mx-auto"/>
@@ -24,5 +27,6 @@ export default function Login() {
         <p className='signup-page-already-piggybanking'>Not a member? <a href="/signup" style={{backgroundColor: "#FFCC02", fontFamily: "Roboto", color: "white", fontSize: "15px", borderRadius: "25px", padding: "8px", paddingLeft: "40px", paddingRight: "40px"}}>Sign up here!</a></p>
       </div>
     </div>
+    </>
   )
 }
