@@ -151,5 +151,12 @@ input::-webkit-outer-spin-button,
       }
 
 
-
-
+.select-summary-dates {
+    background-color: #FFCC02;
+    border-radius: 25px;
+    outline: none;
+    color: white;
+    padding: 4px;
+    width: 150px;
+    text-align: center;
+}

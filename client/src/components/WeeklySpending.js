@@ -13,6 +13,8 @@ export default function WeeklySpending() {
     datasets: [
       {
         label: "Users Gained ",
+        labels: Data.map((data) => data.type),
+        color: "black",
         data: Data.map((data) => data.userGain),
         backgroundColor: [
           "rgba(75,192,192,1)",
@@ -21,8 +23,8 @@ export default function WeeklySpending() {
           "#f3ba2f",
           "#2a71d0"
         ],
-        borderColor: "black",
-        borderWidth: 2
+        // borderColor: "black",
+        borderWidth: 0
       }
     ]
   });
