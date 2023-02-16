@@ -13,13 +13,22 @@ import './App.css';
 function App() {
 
   const [message, setMessage] = useState({});
-
+  const [user, setUser] = useState({})
   
   useEffect(() => {
-    fetch("/users")
-    .then((r) => r.json())
-    .then((data) => console.log(data))
-    // console.log(message)
+    const token = localStorage.getItem("token")
+    if(token){
+      fetch("/auto_login", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(r => r.json())
+      .then(data => {
+        setUser(data)
+        console.log(data)
+      })
+    }
   }, []);
   return (
     <div className="App">
@@ -27,9 +36,9 @@ function App() {
       <BrowserRouter>
       <Switch>
             <Route path="/summary"><Summary /></Route>
-            <Route path="/weeklyspending"><WeeklySpending /></Route>
-            <Route path="/signup"><Signup /></Route>
-            <Route path="/login"><Login /></Route>
+            <Route path="/weeklyspending"><WeeklySpending user={user} setUser={setUser}/></Route>
+            <Route path="/signup"><Signup setUser={setUser}/></Route>
+            <Route path="/login"><Login setUser={setUser}/></Route>
             <Route exact path="/"><LandingPage /></Route>
             <Route path="*"><h1>Oops! This page hasn't been created yet!</h1></Route>
       </Switch>

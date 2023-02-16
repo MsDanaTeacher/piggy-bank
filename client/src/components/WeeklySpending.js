@@ -6,7 +6,7 @@ import PieChart from './PieChart';
 import {Chart, ArcElement} from 'chart.js'
 
 
-export default function WeeklySpending() {
+export default function WeeklySpending({ user, setUser }) {
   Chart.register(ArcElement);
   const [chartData, setChartData] = useState({
     labels: Data.map((data) => data.year), 
@@ -31,7 +31,7 @@ export default function WeeklySpending() {
 
   return (
     <>
-      <NavBar />
+      <NavBar user={user} setUser={setUser}/>
       <div class="flex justify-center w-screen h-screen">
         <div class="w-1/2 text-center" style={{fontFamily: "Noto Sans", color: "#FFCC02", fontSize: "16px"}}>
           <p>User's Weekly Spending</p>

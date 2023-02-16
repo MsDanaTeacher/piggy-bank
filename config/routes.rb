@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
-  resources :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  #handles user signing up:
+  resource :users, only: [:create]
+  #handles login for existing user in the database:
+  post "/login", to: "auth#create"
+  #handles automatic login once a user is able to successfully sign up/login:
+  get "/profile", to: "users#profile"
+  #this route can only be accessed if a user is authorized:
+  # get "/user_is_authed", to: "auth#user_is_authed"
+  
+  
 
   #since Rails is handling the routing logic, it will look for routes defined in the config/routes.rb file to determine how to handle all requests
   #We can solve this problem by setting up a custom route in our Rails application, and handle any requests that come through that aren't requests for our API routes by returning the public/index.html file instead.
   #the method below handles all other GET requests by sending
   #them to a special FallbackController with an index action:
+  
   get '*path',
     to: 'fallback#index',
     constraints: ->(req) { !req.xhr? && req.format.html? }
