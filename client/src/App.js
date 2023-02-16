@@ -17,19 +17,21 @@ function App() {
   
   useEffect(() => {
     const token = localStorage.getItem("token")
-    if(token){
-      fetch("/auto_login", {
+    if(token && user.username){
+      fetch("/profile", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then(r => r.json())
       .then(data => {
-        setUser(data)
-        console.log(data)
+        if(data.user){
+          setUser(data.user);
+        }
       })
     }
   }, []);
+  
   return (
     <div className="App">
       {/* <NavBar /> */}
