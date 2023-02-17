@@ -1,45 +1,40 @@
 class ApplicationController < ActionController::API
-    #call the authorized method before anything else happens in our app
-    before_action :authorized
-    def encode_token(payload)
-        # payload => { beef: 'steak' }
-        JWT.encode(payload, 'secret_key')
-        # jwt string: "eyJhbGciOiJIUzI1NiJ9.eyJiZWVmIjoic3RlYWsifQ._IBTHTLGX35ZJWTCcY30tLmwU9arwdpNVxtVU0NpAuI"
+    # rescue_from User::NotAuthorized, with: :deny_access
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity
+    # protect_from_forgery with: :null_session #avoids CSRF error
+    # before_action :authorized #calls and checks if authorized method passes
+
+    #asks the question is user logged in
+    def logged_in_user
+        headers = request.headers['Authorization']
+        
+            token = headers.split(' ')[1]
+            cur_id = JWT.decode(token, 'secret_key', true, algorithm: 'HS256')
+            @current_user = User.find_by(id: cur_id[0]["user_id"])
+            @current_user
+
     end
 
-    def auth_header
-        # { 'Authorization': 'Bearer <token>' }
-        request.headers['Authorization']
-    end
-
-    def decoded_token
-        if auth_header
-            token = auth_header.split(' ')[1]
-            # headers: { 'Authorization': 'Bearer <token>' }
-            begin
-                JWT.decode(token, 'secret_key', true, algorithm: 'HS256')
-                # JWT.decode => [{ "beef"=>"steak" }, { "alg"=>"HS256" }]
-            rescue JWT::DecodeError
-                nil
-            end
-        end
-    end
-
-    def current_user
-        if decoded_token
-            # decoded_token=> [{"user_id"=>2}, {"alg"=>"HS256"}]
-            # or nil if we can't decode the token
-            user_id = decoded_token[0]['user_id']
-            @user = User.find_by(id: user_id)
-        end
-    end
-
-    #Recall that a Ruby object/instance is 'truthy': !!user_instance #=> true and nil is 'false-y': !!nil #=> false. Therefore logged_in? will just return a boolean depending on what our current_user method returns.
-    def logged_in?
-        !!current_user
-    end
-
+    #throws error if not logged in
     def authorized
-        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+        # puts "checking... #{logged_in_user}"
+        # !! converts a value to boolean
+        render json: { message: 'Please log in' }, status: :unauthorized unless !!logged_in_user
+    end
+
+    #messages for errors
+    private
+
+    def deny_access
+        head :forbidden
+    end
+
+    def unprocessable_entity(exception)
+        render json: {"errors": exception.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
+    def not_found
+        render json: {"error": "not found"}, status: 404
     end
 end

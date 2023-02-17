@@ -160,3 +160,12 @@ input::-webkit-outer-spin-button,
     width: 150px;
     text-align: center;
 }
+
+/* date range */
+.rdrDefinedRangesWrapper {
+    display: none;
+  }
+
+.date-range-hidden {
+    display: none;
+}

@@ -28,8 +28,8 @@ export default function Login({ setUser }) {
       },
       body: JSON.stringify(loginData)
     })
-    .then((r) => r.json())
-    .then((data) => {
+    .then(r => r.json())
+    .then(data => {
       //set user
       //set token
       setUser(data.user)

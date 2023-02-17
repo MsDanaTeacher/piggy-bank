@@ -4,8 +4,8 @@ import NavBar from './NavBar'
 import { Data } from "./Data";
 import PieChart from './PieChart';
 import {Chart, ArcElement} from 'chart.js'
-
-
+import DateRange from './DateRange';
+import { addDays } from "date-fns";
 export default function WeeklySpending({ user, setUser }) {
   Chart.register(ArcElement);
   const [chartData, setChartData] = useState({
@@ -28,14 +28,30 @@ export default function WeeklySpending({ user, setUser }) {
       }
     ]
   });
+  const [selectDates, setSelectDates] = useState(false)
+  const username = user.username
 
+  function handleSelectDates(){
+    setSelectDates(prev => !prev)
+  }
+  
+  const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 7),
+      key: "selection",
+    },
+  ]);
+
+  console.log(state)
   return (
     <>
       <NavBar user={user} setUser={setUser}/>
       <div class="flex justify-center w-screen h-screen">
         <div class="w-1/2 text-center" style={{fontFamily: "Noto Sans", color: "#FFCC02", fontSize: "16px"}}>
-          <p>User's Weekly Spending</p>
-          
+          <p>{username}'s Weekly Spending</p>
+          <button onClick={handleSelectDates}>Select Dates</button>
+          <div className={selectDates ? null : "date-range-hidden"}><DateRange state={state} setState={setState}/></div>
          
           <PieChart chartData={chartData} />
 

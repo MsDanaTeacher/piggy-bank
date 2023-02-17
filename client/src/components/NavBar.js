@@ -8,7 +8,6 @@ export default function NavBar({ user, setUser }) {
   function handleLogoutClick(){
     setUser({username: ''})
     localStorage.removeItem('token')
-    console.log(user)
     history.push('/')
   }
 
@@ -21,9 +20,9 @@ export default function NavBar({ user, setUser }) {
     <a href="/"style={{color: "white", fontSize: "36px", fontFamily: "Ubuntu"}} class="mx-7">PiggyBank</a>
     <button onClick={handleLogoutClick} style={{color: "white", fontSize: "18px", fontFamily: "Ubuntu"}}>Log out</button>
     <div class="mx-7" style={{fontFamily: "Noto Sans", display: "flex"}}>
-    <p>Dates go here</p>
+   
     <div style={{display: "flex"}}>
-      <p>User's piggy bank</p>
+      <p>{user.username}'s piggy bank</p>
       <img src="https://cdn-icons-png.flaticon.com/128/3940/3940422.png" height="70px"
     width="70px"/>
     </div>

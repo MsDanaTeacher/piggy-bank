@@ -11,17 +11,16 @@ import Summary from './components/Summary';
 import './App.css';
 
 function App() {
-
-  const [message, setMessage] = useState({});
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({ username: '' })
   
+  // auto login
   useEffect(() => {
-    const token = localStorage.getItem("token")
-    if(token && user.username){
-      fetch("/profile", {
+    let token = localStorage.getItem("token")
+    if(token && !user.username){
+      fetch("/me", {
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          'Authorization': `Bearer ${token}`
+        }
       })
       .then(r => r.json())
       .then(data => {

@@ -37,7 +37,7 @@ export default function Signup({setUser}) {
     if(signUpData.username === '' || signUpData.password === '' || signUpData.avatar === ''){
       alert('Please complete all required fields.')
     } else {
-      fetch('/users', {
+      fetch('/signup', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
