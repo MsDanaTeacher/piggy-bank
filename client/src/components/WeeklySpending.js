@@ -43,15 +43,18 @@ export default function WeeklySpending({ user, setUser }) {
     },
   ]);
 
-  console.log(state)
+  function handleDateChange(e){
+    setState([item.selection])
+  }
+  
   return (
     <>
       <NavBar user={user} setUser={setUser}/>
       <div class="flex justify-center w-screen h-screen">
         <div class="w-1/2 text-center" style={{fontFamily: "Noto Sans", color: "#FFCC02", fontSize: "16px"}}>
           <p>{username}'s Weekly Spending</p>
-          <button onClick={handleSelectDates}>Select Dates</button>
-          <div className={selectDates ? null : "date-range-hidden"}><DateRange state={state} setState={setState}/></div>
+          <button onClick={handleSelectDates}>Dates:</button><h2>{state}</h2>
+          <div className={selectDates ? null : "date-range-hidden"}><DateRange state={state} setState={setState} handleDateChange={handleDateChange}/></div>
          
           <PieChart chartData={chartData} />
 
