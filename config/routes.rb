@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :needs
+  resources :wants, only: [:index, :create]
+  resources :spendings
 
   #handles user signing up:
   post '/signup', to: 'users#create'
@@ -10,7 +13,8 @@ Rails.application.routes.draw do
   # get "/user_is_authed", to: "auth#user_is_authed"
   post '/logout', to: 'users#logout'
  
-
+  get '/wants/:user_id', to: 'wants#index'
+  # get "/userspendings", to: "spendings#user_spendings"
   #since Rails is handling the routing logic, it will look for routes defined in the config/routes.rb file to determine how to handle all requests
   #We can solve this problem by setting up a custom route in our Rails application, and handle any requests that come through that aren't requests for our API routes by returning the public/index.html file instead.
   #the method below handles all other GET requests by sending
